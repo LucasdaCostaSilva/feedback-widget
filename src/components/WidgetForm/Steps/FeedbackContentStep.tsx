@@ -20,7 +20,7 @@ export function FeedbackContentStep({ feedbackType, onFeedbackRestartRequested, 
 
     onFeedbackSent()
     //
-    console.log(screenshot, comment)
+    console.log(screenshot, comment, feedbackTypeInfo.title)
   }
   return (
     <>
