@@ -12,6 +12,18 @@ export class FeedbackService {
   async execute(feedback: IFeedback) {
     const { type, comment, screenshot } = feedback
 
+    if (!type) {
+      throw new Error('Type is required')
+    }
+
+    if (!comment) {
+      throw new Error('Comment is required')
+    }
+
+    if (screenshot && !screenshot.startsWith('data:image/png;base64,')) {
+      throw new Error('Invalid screenshot format')
+    }
+
     await this.emailAdapter.sendEmail({
       subject: 'Feedback do usuário',
       body: [
