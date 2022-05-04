@@ -6,20 +6,47 @@ const app = express()
 
 app.use(express.json())
 
+const transport = nodemailer.createTransport({
+  host: "smtp.mailtrap.io",
+  port: 2525,
+  auth: {
+    user: "a03c03b4489ce9",
+    pass: "12be122b4944ad"
+  }
+});
+
 app.get('/', (req, res) => {
   res.send('Usar rota: /feedbacks com método POST')
 })
 
-app.post('/feedbacks', (req, res) => {
-  prisma.feedback.create({
-    data: {
-      ...req.body,
-    },
-  }).then(feedback => {
-    res.status(201).send({ data: feedback })
-  }).catch(err => {
-    res.status(500).send('Feedback erro' + err)
+app.post('/feedbacks', async (req, res) => {
+
+  const { type, comment, screenshot } = req.body;
+
+  await transport.sendMail({
+    from: "Equipe feedback <suporte@feedget.com>",
+    to: "Lucas <landir@gmail.com>",
+    subject: "Feedback do usuário",
+    html: [
+      `<div style="font-family: sans-serif; font-size: 16px;color: #111;">`,
+      `<p>Tipo do feedback: ${type}</p>`,
+      `<p>Comentário: ${comment}</p>`,
+      `<p>Tela:<br/> <img src="${screenshot}" alt="Tela" /></p>`,
+      `</div>`
+    ].join('\n')
   })
+
+  try {
+    const feedbackSaved = await prisma.feedback.create({
+      data: {
+        type, comment, screenshot
+      },
+    })
+    res.status(201).send({ data: feedbackSaved })
+  } catch (error) {
+    res.status(500).send('Feedback não salvo: ' + error)
+  }
+
 
 })
 
