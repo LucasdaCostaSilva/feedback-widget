@@ -1,10 +1,15 @@
 import { IFeedback } from "../types/IFeedback.type"
 import { FeedbackService } from "./FeedbackService"
 
+const createFeedbackSpy = jest.fn(
+  async (data) => Promise.resolve({ updatedAt, ...data })
+)
+const sendEmailSpy = jest.fn()
+
 const updatedAt = new Date()
 const feedbackService = new FeedbackService(
-  { create: async (data) => Promise.resolve({ updatedAt, ...data }) },
-  { sendEmail: async () => { } }
+  { create: createFeedbackSpy },
+  { sendEmail: sendEmailSpy }
 )
 
 describe('Submit Feedback ', () => {
@@ -17,6 +22,8 @@ describe('Submit Feedback ', () => {
       comment: 'teste comment',
       updatedAt
     })
+    expect(createFeedbackSpy).toHaveBeenCalled()
+    expect(sendEmailSpy).toHaveBeenCalled()
   })
 
   it('should be able to submit feedback with screenshot', async () => {
