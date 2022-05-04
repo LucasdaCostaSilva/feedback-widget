@@ -1,14 +1,25 @@
 import express from 'express'
+import { prisma } from './prisma'
 
 const app = express()
 
+app.use(express.json())
+
 app.get('/', (req, res) => {
-  res.header('location', 'http://localhost:3333/feedback')
-  res.status(302).send('Hello World!')
+  res.send('Usar rota: /feedbacks com método POST')
 })
 
-app.get('/feedback', (req, res) => {
-  res.send('Feedback received' + JSON.stringify(req.body))
+app.post('/feedbacks', (req, res) => {
+  prisma.feedback.create({
+    data: {
+      ...req.body,
+    },
+  }).then(feedback => {
+    res.status(201).send({ data: feedback })
+  }).catch(err => {
+    res.status(500).send('Feedback erro' + err)
+  })
+
 })
 
 app.listen(3333, () => {
