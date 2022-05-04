@@ -1,5 +1,6 @@
 .env
-.db
+*.db
+*.db-journal
 
 # Logs
 logs
