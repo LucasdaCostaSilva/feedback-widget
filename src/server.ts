@@ -1,5 +1,6 @@
 import express from 'express'
 import { prisma } from './prisma'
+import nodemailer from 'nodemailer'
 
 const app = express()
 
