@@ -1,9 +1,9 @@
 export const theme = {
   colors: {
     brand: '#8257E5',
-    background: '#09090A',
+    background: '#C9C9CA',
 
-    surface_primary: '#18181B',
+    surface_primary: '#181818',
     surface_secondary: '#27272A',
 
     text_primary: '#F4F4F5',
