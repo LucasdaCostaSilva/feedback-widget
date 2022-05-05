@@ -25,6 +25,13 @@ export function Form({ feedbackType }: Props) {
         </View>
       </View>
 
+      <TextInput
+        multiline
+        style={styles.input}
+        placeholder="Deixe seu feedback"
+        placeholderTextColor={theme.colors.text_secondary}
+      />
+
     </View>
   );
 }
