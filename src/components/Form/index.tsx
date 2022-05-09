@@ -2,7 +2,9 @@ import { ArrowLeft } from 'phosphor-react-native';
 import { Image, Text, TextInput, View, TouchableOpacity } from 'react-native';
 import { theme } from '../../theme';
 import { feedbackTypes } from '../../utils/feedbackTypes';
+import { ScreenshotButton } from '../ScreenshotButton';
 import { FeedbackType } from '../Widget';
+import { Button } from '../Button';
 import { styles } from './styles';
 
 
@@ -31,6 +33,14 @@ export function Form({ feedbackType }: Props) {
         placeholder="Deixe seu feedback"
         placeholderTextColor={theme.colors.text_secondary}
       />
+
+      <View style={styles.footer}>
+        <ScreenshotButton
+          onTakeShot={() => { }}
+          onRemoveShot={() => { }}
+          screenshot="" />
+        <Button isLoading={false} />
+      </View>
 
     </View>
   );

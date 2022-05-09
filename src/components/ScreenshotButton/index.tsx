@@ -1,11 +1,29 @@
-import { Text, View } from 'react-native';
+import { Camera, Trash } from 'phosphor-react-native';
+import { Image, TouchableOpacity, View } from 'react-native';
+import { theme } from '../../theme';
 import { styles } from './styles';
 
-export function ScreenshotButton() {
+interface Props {
+  screenshot: string | null;
+  onTakeShot: () => void;
+  onRemoveShot: () => void;
+}
+
+export function ScreenshotButton({ screenshot, onTakeShot, onRemoveShot }: Props) {
 
   return (
-    <View>
-      <Text style={styles.text}>Feito com ::heart:: pelo Lucas</Text>
-    </View>
+    <TouchableOpacity style={styles.container}
+      onPress={screenshot ? onRemoveShot : onTakeShot}>
+      {screenshot
+        ?
+        <View>
+          <Image style={styles.image} source={{ uri: screenshot }} />
+          <Trash size={22} weight="fill" style={styles.removeIcon}
+            color={theme.colors.text_secondary} />
+        </View>
+        : <Camera size={24} weight="bold"
+          color={theme.colors.text_primary} />
+      }
+    </TouchableOpacity>
   );
 }
