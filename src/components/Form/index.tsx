@@ -8,6 +8,7 @@ import { Button } from '../Button';
 import { styles } from './styles';
 import { captureScreen } from 'react-native-view-shot';
 import { useState } from 'react';
+import { api } from '../../libs/api';
 
 
 interface Props {
@@ -19,6 +20,7 @@ interface Props {
 export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props) {
   const [screenshot, setScreenshot] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [comment, setComment] = useState("");
   const feedbackTypeInfo = feedbackTypes[feedbackType]
 
   function handleScreenshot() {
@@ -38,7 +40,12 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
 
     setIsLoading(true);
     try {
-      //    await fetch
+      await api.post('/feedbacks', {
+        type: feedbackType,
+        screenshot,
+        comment
+      });
+      onFeedbackSent();
     } catch (error) {
       console.error(error);
     } finally {
@@ -63,6 +70,7 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
         autoCorrect={false}
         style={styles.input}
         placeholder="Deixe seu feedback"
+        onChangeText={setComment}
         placeholderTextColor={theme.colors.text_secondary}
       />
 
