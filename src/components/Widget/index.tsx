@@ -7,6 +7,7 @@ import { theme } from '../../theme';
 import { feedbackTypes } from '../../utils/feedbackTypes';
 import { Form } from '../Form';
 import { Options } from '../Options';
+import { Success } from '../Success';
 import { styles } from './styles';
 
 export type FeedbackType = keyof typeof feedbackTypes;
