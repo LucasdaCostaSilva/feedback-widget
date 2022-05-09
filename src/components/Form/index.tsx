@@ -1,3 +1,4 @@
+import * as FileSystem from 'expo-file-system';
 import { ArrowLeft } from 'phosphor-react-native';
 import { Image, Text, TextInput, View, TouchableOpacity } from 'react-native';
 import { theme } from '../../theme';
@@ -25,8 +26,7 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
 
   function handleScreenshot() {
     captureScreen({
-      format: 'jpg',
-      quality: 0.8
+      format: 'png'
     }).then(uri => setScreenshot(uri))
       .catch(err => console.error(err));
   }
@@ -39,10 +39,11 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
     if (isLoading) return;
 
     setIsLoading(true);
+    const screenshotBase64 = screenshot && await FileSystem.readAsStringAsync(screenshot, { encoding: FileSystem.EncodingType.Base64 });
     try {
       await api.post('/feedbacks', {
         type: feedbackType,
-        screenshot,
+        screenshot: `data:image/png;base64, ${screenshotBase64}`,
         comment
       });
       onFeedbackSent();
