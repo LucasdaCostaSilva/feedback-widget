@@ -1,6 +1,6 @@
 import BottomSheet from '@gorhom/bottom-sheet';
 import { ChatTeardropDots } from 'phosphor-react-native';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 import { theme } from '../../theme';
@@ -15,9 +15,20 @@ export type FeedbackType = keyof typeof feedbackTypes;
 function Widget() {
 
   const bottomSheetRef = useRef<BottomSheet>(null);
+  const [feedbackType, setFedbackType] = useState<FeedbackType | null>(null);
+  const [feedbackSent, setFeedbackSent] = useState(false);
 
   function handleOpen() {
     bottomSheetRef.current?.expand();
+  }
+
+  function handleRestartFeedback() {
+    setFeedbackSent(false);
+    setFedbackType(null);
+  }
+
+  function handleFeedbackSent() {
+    setFeedbackSent(true);
   }
 
   return (
@@ -31,7 +42,19 @@ function Widget() {
         backgroundStyle={styles.modal}
         handleIndicatorStyle={styles.indicator}
       >
-        <Form feedbackType="IDEA" />
+        {
+          feedbackSent ? <Success /> :
+            <>
+              {
+                feedbackType
+                  ? <Form feedbackType={feedbackType}
+                    onFeedbackCanceled={handleRestartFeedback}
+                    onFeedbackSent={handleFeedbackSent} />
+                  : <Options onFeedbackTypeChanged={setFedbackType} />
+              }
+            </>
+        }
+
       </BottomSheet>
     </>
   );
