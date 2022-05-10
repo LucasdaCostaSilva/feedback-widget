@@ -1,15 +1,15 @@
 import * as FileSystem from 'expo-file-system';
 import { ArrowLeft } from 'phosphor-react-native';
-import { Image, Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { useState } from 'react';
+import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { captureScreen } from 'react-native-view-shot';
+import { api } from '../../libs/api';
 import { theme } from '../../theme';
 import { feedbackTypes } from '../../utils/feedbackTypes';
+import { Button } from '../Button';
 import { ScreenshotButton } from '../ScreenshotButton';
 import { FeedbackType } from '../Widget';
-import { Button } from '../Button';
 import { styles } from './styles';
-import { captureScreen } from 'react-native-view-shot';
-import { useState } from 'react';
-import { api } from '../../libs/api';
 
 
 interface Props {
@@ -26,7 +26,8 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
 
   function handleScreenshot() {
     captureScreen({
-      format: 'png'
+      format: 'jpg',
+      quality: 0.8,
     }).then(uri => setScreenshot(uri))
       .catch(err => console.error(err));
   }
@@ -43,7 +44,7 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
     try {
       await api.post('/feedbacks', {
         type: feedbackType,
-        screenshot: `data:image/png;base64, ${screenshotBase64}`,
+        screenshot: `data:image/png;base64,${screenshotBase64}`,
         comment
       });
       onFeedbackSent();
@@ -67,10 +68,11 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
       </View>
 
       <TextInput
-        multiline
+        multiline={false}
+        enablesReturnKeyAutomatically={true}
         autoCorrect={false}
         style={styles.input}
-        placeholder="Deixe seu feedback"
+        placeholder={`Deixe seu feedback ${process.env.EXPO_API_FEEDBACK}`}
         onChangeText={setComment}
         placeholderTextColor={theme.colors.text_secondary}
       />

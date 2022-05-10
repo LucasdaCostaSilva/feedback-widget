@@ -18,9 +18,8 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.surface_primary,
     paddingBottom: 16 + getBottomSpace(),
   },
- indicator: {
+  indicator: {
     backgroundColor: theme.colors.text_primary,
     width: 56,
-  },
-
+  }
 });

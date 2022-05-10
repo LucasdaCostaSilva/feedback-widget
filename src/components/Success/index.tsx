@@ -1,8 +1,7 @@
-import { ActivityIndicator, Text, TouchableOpacity, Image, View } from 'react-native';
-import { theme } from '../../theme';
-import { styles } from './styles';
-import successImg from '../assets/success.png';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import successImg from '../../assets/success.png';
 import { Copyright } from '../Copyright';
+import { styles } from './styles';
 
 interface Props {
   onSendAnotherFeedback: () => void;
