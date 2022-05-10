@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "db": "prisma migrate dev",
+    "studio": "prisma studio",
     "dev": "ts-node-dev src/server.ts"
   },
   "keywords": [],
