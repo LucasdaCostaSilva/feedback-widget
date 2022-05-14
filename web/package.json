@@ -6,7 +6,6 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "start": "vite start",
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
