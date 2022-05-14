@@ -1,2 +1,9 @@
-DATABASE_URL="file:./dev.db"
-DATABASE_PROVIDER="sqlite"
+#DATABASE_PROVIDER="sqlite"
+#DATABASE_URL="file:./dev.db"
+
+#
+#DATABASE_PROVIDER="postgresql"
+DATABASE_URL="postgres://userName:passWord@localhost:5432/databaseName"
+
+#
+HTTP_TIMEOUT=10000
