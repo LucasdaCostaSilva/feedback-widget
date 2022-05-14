@@ -10,7 +10,7 @@
     "db": "prisma migrate dev",
     "studio": "prisma studio",
     "dev": "ts-node-dev src/server.ts",
-    "heroku-postbuild": "npm run build && npm run db"
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "author": "",
