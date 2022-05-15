@@ -10,7 +10,8 @@ https://impulse-feedback-widget-web.herokuapp.com/
 * heroku buildpacks -a impulse-feedback-widget-web
   ```
   1. https://github.com/lstoll/heroku-buildpack-monorepo
-  2. heroku-community/static
+  2. heroku/nodejs
+  3. heroku-community/static
   ```
 * heroku buildpacks -a impulse-feedback-widget-api
   ```
