@@ -2,7 +2,7 @@
 
 https://impulse-feedback-widget-web.herokuapp.com/
 
-# Heroku deploy
+## Heroku deploy
 
 * heroku login
 
@@ -70,3 +70,19 @@ https://impulse-feedback-widget-web.herokuapp.com/
 * git remote add heroku-web https://git.heroku.com/impulse-feedback-widget-web.git
 * git push heroku-web main
 
+
+## MOBILE
+
+* export PORT=3030
+* export EXPO_API_FEEDBACK=https://impulse-feedback-widget-api.herokuapp.com
+* npm i -g expo-cli@^4.3.0 @expo/ngrok@^4.1.0
+* npm run cloud
+* With Expo Go:
+  * use the link [Mobile Link](exp://193.123.113.75)
+  * OR:
+     ![exp://193.123.113.75](./qr-code.png)
+
+# Footnotes
+* This is a demo project.
+* The code is open source.
+* The code is hosted on GitHub, Heroku and Oracle Cloud.
