@@ -76,7 +76,7 @@ https://impulse-feedback-widget-web.herokuapp.com/
 
 * export PORT=3030
 * export EXPO_API_FEEDBACK=https://impulse-feedback-widget-api.herokuapp.com
-* npm i -g expo-cli@^4.3.0 @expo/ngrok@^4.1.0
+* sudo npm i -g expo-cli@^4.3.0 @expo/ngrok@^4.1.0
 * npm run cloud
 * With Expo Go:
   * use the link [Mobile Link](exp://193.123.113.75)
