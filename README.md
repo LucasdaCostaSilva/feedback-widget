@@ -79,7 +79,7 @@ https://impulse-feedback-widget-web.herokuapp.com/
 * sudo npm i -g expo-cli@^4.3.0 @expo/ngrok@^4.1.0
 * npm run cloud
 * With Expo Go:
-  * use the link [Mobile Link](exp://193.123.113.75)
+  * use the expo link [exp://193.123.113.75](exp://193.123.113.75)
   * OR:
      ![exp://193.123.113.75](./qr-code.png)
 
