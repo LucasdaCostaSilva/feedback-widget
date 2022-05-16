@@ -1,6 +1,9 @@
 # feedback-widget
 
-https://impulse-feedback-widget-web.herokuapp.com/
+* https://impulse-feedback-widget-web.herokuapp.com/
+* node: 16.15.0
+* npm: 8.5.5
+* postgresql: 12
 
 ## Heroku deploy
 
