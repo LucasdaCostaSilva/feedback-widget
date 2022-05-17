@@ -1,6 +1,8 @@
 # feedback-widget
 
 * https://impulse-feedback-widget-web.herokuapp.com/
+* exp://impulse-feedback-widget-mobile.herokuapp.com/ios-index.json
+* exp://impulse-feedback-widget-mobile.herokuapp.com/android-index.json
 * node: 16.15.0
 * npm: 8.5.5
 * postgresql: 12
@@ -77,23 +79,39 @@
 
 ## MOBILE
 
-* export PORT=3030
-* export DPORT=80
+* heroku create impulse-feedback-widget-mobile
+* heroku buildpacks:add -a impulse-feedback-widget-mobile https://github.com/lstoll/heroku-buildpack-monorepo
+* heroku buildpacks:add -a impulse-feedback-widget-mobile heroku-community/static
+* heroku config:set -a impulse-feedback-widget-mobile EXPO_API_FEEDBACK=https://impulse-feedback-widget-api.herokuapp.com
 * export EXPO_API_FEEDBACK=https://impulse-feedback-widget-api.herokuapp.com
-* sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport $PORT -j ACCEPT
-* sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport $DPORT -j ACCEPT
-* sudo iptables -t nat -A PREROUTING -p tcp --dport $DPORT -j REDIRECT --to-port $PORT 
-* sudo netfilter-persistent save
-* Port test: python3 -m http.server $PORT and open to check: http://193.123.113.75:$DPORT
-* sudo npm i -g expo-cli@^4.3.0 @expo/ngrok@^4.1.0
-* npm i
-* expo start --no-dev --minify --port $PORT
+* expo export --public-url https://impulse-feedback-widget-mobile.herokuapp.com
+
+### Git
+* git remote add heroku-mobile https://git.heroku.com/impulse-feedback-widget-mobile.git
+* git push heroku-mobile main
+
+
+### On Device
+
 * With mobile app Expo Go:
-  * use the expo link [exp://193.123.113.75](exp://193.123.113.75)
-  * OR:
-     ![exp://193.123.113.75](./qr-code.png)
+
+* IOS
+  * use the expo link [exp://impulse-feedback-widget-mobile.herokuapp.com/ios-index.json](exp://impulse-feedback-widget-mobile.herokuapp.com/ios-index.json)
+  * ![exp://impulse-feedback-widget-mobile.herokuapp.com/ios-index.json](qr-ios.png)
+
+```
+
+
+
+
+```
+
+* ANDROID
+  * use the expo link [exp://impulse-feedback-widget-mobile.herokuapp.com/android-index.json](exp://impulse-feedback-widget-mobile.herokuapp.com/android-index.json)
+  * ![exp://impulse-feedback-widget-mobile.herokuapp.com/android-index.json](qr-android.png)
+
 
 # Footnotes
 * This is a demo project.
 * The code is open source.
-* The code is hosted on GitHub, Heroku and Oracle Cloud.
+* The code is hosted on GitHub and Heroku
