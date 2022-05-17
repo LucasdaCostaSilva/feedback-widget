@@ -78,11 +78,13 @@
 ## MOBILE
 
 * export PORT=3030
+* export DPORT=80
 * export EXPO_API_FEEDBACK=https://impulse-feedback-widget-api.herokuapp.com
-* sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 3030 -j ACCEPT
-* sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port $PORT 
+* sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport $PORT -j ACCEPT
+* * sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport $DPORT -j ACCEPT
+* sudo iptables -t nat -A PREROUTING -p tcp --dport $DPORT -j REDIRECT --to-port $PORT 
 * sudo netfilter-persistent save
-* Port test: python3 -m http.server $PORT and open to check: http://193.123.113.75
+* Port test: python3 -m http.server $PORT and open to check: http://193.123.113.75:$DPORT
 * sudo npm i -g expo-cli@^4.3.0 @expo/ngrok@^4.1.0
 * npm i
 * expo start --no-dev --minify --port $PORT
