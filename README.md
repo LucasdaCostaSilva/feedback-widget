@@ -82,7 +82,7 @@
 * heroku create impulse-feedback-widget-mobile
 * heroku buildpacks:add -a impulse-feedback-widget-mobile https://github.com/lstoll/heroku-buildpack-monorepo
 * heroku buildpacks:add -a impulse-feedback-widget-mobile heroku-community/static
-* heroku config:set -a impulse-feedback-widget-mobile EXPO_API_FEEDBACK=https://impulse-feedback-widget-api.herokuapp.com
+* heroku config:set -a impulse-feedback-widget-mobile APP_BASE=mobile EXPO_API_FEEDBACK=https://impulse-feedback-widget-api.herokuapp.com
 * export EXPO_API_FEEDBACK=https://impulse-feedback-widget-api.herokuapp.com
 * expo export --public-url https://impulse-feedback-widget-mobile.herokuapp.com
 
