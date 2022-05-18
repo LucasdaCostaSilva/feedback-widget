@@ -44,7 +44,7 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
     try {
       await api.post('/feedbacks', {
         type: feedbackType,
-        screenshot: `data:image/png;base64,${screenshotBase64}`,
+        screenshot: screenshot && `data:image/png;base64,${screenshotBase64}`,
         comment
       });
       onFeedbackSent();
@@ -52,6 +52,7 @@ export function Form({ feedbackType, onFeedbackCanceled, onFeedbackSent }: Props
       console.error(error);
     } finally {
       setIsLoading(false);
+      onFeedbackSent();
     }
   }
 
