@@ -1,8 +1,8 @@
 # feedback-widget
 
 * https://impulse-feedback-widget-web.herokuapp.com/
-* exp://impulse-feedback-widget-mobile.herokuapp.com/ios-index.json
-* exp://impulse-feedback-widget-mobile.herokuapp.com/android-index.json
+* exps://impulse-feedback-widget-mobile.herokuapp.com/ios-index.json
+* exps://impulse-feedback-widget-mobile.herokuapp.com/android-index.json
 * node: 16.15.0
 * npm: 8.5.5
 * postgresql: 12
@@ -84,6 +84,9 @@
 * heroku buildpacks:add -a impulse-feedback-widget-mobile heroku-community/static
 * heroku config:set -a impulse-feedback-widget-mobile APP_BASE=mobile EXPO_API_FEEDBACK=https://impulse-feedback-widget-api.herokuapp.com
 * export EXPO_API_FEEDBACK=https://impulse-feedback-widget-api.herokuapp.com
+* npm install -g expo-cli
+* npm install
+* expo start --clear --no-dev --minify --https
 * expo export --public-url https://impulse-feedback-widget-mobile.herokuapp.com
 
 ### Git
